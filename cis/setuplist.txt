@@ -1,0 +1,371 @@
+### setuplist.cis first line must be a comment
++Basics
+ohms.cis Ohm's Law
+resistors.cis Resistors
+cap.cis Capacitor
+induct.cis Inductor
+>lrc.cis LRC Circuit
+voltdivide.cis Voltage Divider
+pot.cis Potentiometer
+potdivide.cis Potentiometer Divider
+thevenin.cis Thevenin's Theorem
+norton.cis Norton's Theorem
+-
++A/C Circuits
+capac.cis Capacitor
+inductac.cis Inductor
+capmultcaps.cis Caps of Various Capacitances
+capmultfreq.cis Caps w/ Various Frequencies
+indmultind.cis Inductors of Various Inductances
+indmultfreq.cis Inductors w/ Various Frequencies
+impedance.cis Impedances of Same Magnitude
+res-series.cis Series Resonance
+res-par.cis Parallel Resonance
+-
++Passive Filters
+filt-hipass.cis High-Pass Filter (RC)
+filt-lopass.cis Low-Pass Filter (RC)
+filt-hipass-l.cis High-Pass Filter (RL)
+filt-lopass-l.cis Low-Pass Filter (RL)
+bandpass.cis Band-pass Filter
+notch.cis Notch Filter
+twint.cis Twin-T Filter
+crossover.cis Crossover
+butter10lo.cis Butterworth Low-Pass (10 pole)
+besselbutter.cis Bessel vs Butterworth
+ringing.cis Band-pass with Ringing
+-
++Other Passive Circuits
++Series/Parallel
+indseries.cis Inductors in Series
+indpar.cis Inductors in Parallel
+capseries.cis Caps in Series
+cappar.cis Caps in Parallel
+-
++Transformers
+transformer.cis Transformer
+transformerdc.cis Transformer w/ DC
+transformerup.cis Step-Up Transformer
+transformerdown.cis Step-Down Transformer
+longdist.cis Long-Distance Power Transmission
+-
++Relays
+relay.cis Relay
+relayand.cis Relay AND
+relayor.cis Relay OR
+relayxor.cis Relay XOR
+relaymux.cis Relay Mux
+relayff.cis Relay Flip-Flop
+relaytff.cis Relay Toggle Flip-Flop
+relayctr.cis Relay Counter
+-
+3way.cis 3-Way Light Switches
+4way.cis 3- and 4-Way Light Switches
+diff.cis Differentiator
+wheatstone.cis Wheatstone Bridge
+lrc-critical.cis Critically Damped LRC
+currentsrcelm.cis Current Source
+inductkick.cis Inductive Kickback
+inductkick-snub.cis Blocking Inductive Kickback
+powerfactor1.cis Power Factor
+powerfactor2.cis Power Factor Correction
+grid.cis Resistor Grid
+grid2.cis Resistor Grid 2
+cube.cis Resistor Cube
++Coupled LC's
+coupled1.cis LC Modes (2)
+coupled2.cis Weak Coupling
+coupled3.cis LC Modes (3)
+ladder.cis LC Ladder
+-
+phaseseq.cis Phase-Sequence Network
+lissa.cis Lissajous Figures
+-
++Diodes
+diodevar.cis Diode
+diodecurve.cis Diode I/V Curve
+rectify.cis Half-Wave Rectifier
+fullrect.cis Full-Wave Rectifier
+fullrectf.cis Full-Wave Rectifier w/ Filter
+diodelimit.cis Diode Limiter
++Zener Diodes
+zeneriv.cis I/V Curve
+zenerref.cis Voltage Reference
+zenerreffollow.cis Voltage Reference w/ Follower
+-
+dcrestoration.cis DC Restoration
+inductkick-block.cis Blocking Inductive Kickback
+spikegen.cis Spike Generator
++Voltage Multipliers
+voltdouble.cis Voltage Doubler
+voltdouble2.cis Voltage Doubler 2
+volttriple.cis Voltage Tripler
+voltquad.cis Voltage Quadrupler
+-
+amdetect.cis AM Detector
+diodeclip.cis Waveform Clipper
+sinediode.cis Triangle-to-Sine Converter
+ringmod.cis Ring Modulator
+-
++Op-Amps
+opamp.cis Op-Amp
+opampfeedback.cis Op-Amp Feedback
++Amplifiers
+amp-invert.cis Inverting Amplifier
+amp-noninvert.cis Noninverting Amplifier
+amp-follower.cis Follower
+amp-diff.cis Differential Amplifier
+amp-sum.cis Summing Amplifier
+logconvert.cis Log Amplifier
+classd.cis Class-D Amplifier
+-
++Oscillators
+relaxosc.cis Relaxation Oscillator
+phaseshiftosc.cis Phase-Shift Oscillator
+triangle.cis Triangle Wave Generator
+sine.cis Sine Wave Generator
+sawtooth.cis Sawtooth Wave Generator
+vco.cis Voltage-Controlled Oscillator
+rossler.cis Rossler Circuit
+-
+amp-rect.cis Half-Wave Rectifier (inverting)
+amp-fullrect.cis Full-Wave Rectifier
+peak-detect.cis Peak Detector
+amp-integ.cis Integrator
+amp-dfdx.cis Differentiator
+amp-schmitt.cis Schmitt Trigger
+nic-r.cis Negative Impedance Converter
+gyrator.cis Gyrator
+capmult.cis Capacitance Multiplier
+howland.cis Howland Current Source
+itov.cis I-to-V Converter
+opamp-regulator.cis Voltage Regulator
+opint.cis 741 Internals
+opint-invert-amp.cis 741 (inverting amplifier)
+opint-slew.cis 741 Slew Rate
+opint-current.cis 741 Current Limits
+-
++Transistors
+npn.cis NPN Transistor
+pnp.cis PNP Transistor
+transswitch.cis Switch
+follower.cis Emitter Follower
++Multivibrators
+multivib-a.cis Astable Multivib
+multivib-bi.cis Bistable Multivib (Flip-Flop)
+multivib-mono.cis Monostable Multivib (One-Shot)
+-
+ceamp.cis Common-Emitter Amplifier
+phasesplit.cis Unity-Gain Phase Splitter
+schmitt.cis Schmitt Trigger
+currentsrc.cis Current Source
+currentsrcramp.cis Current Source Ramp
+mirror.cis Current Mirror
+darlington.cis Darlington Pair
++Differential Amplifiers
+trans-diffamp.cis Differential Input
+trans-diffamp-common.cis Common-Mode Input
+trans-diffamp-cursrc.cis Common-Mode w/Current Source
+-
++Push-Pull Follower
+pushpullxover.cis Simple, with distortion
+pushpull.cis Improved
+-
++Oscillators
+colpitts.cis Colpitts Oscillator
+hartley.cis Hartley Oscillator
+eclosc.cis Emitter-Coupled LC Oscillator
+-
+-
++MOSFETs
+nmosfet.cis n-MOSFET
+pmosfet.cis p-MOSFET
+mosswitch.cis Switch
+mosfollower.cis Source Follower
+moscurrentsrc.cis Current Source
+moscurrentramp.cis Current Ramp
+mosmirror.cis Current Mirror
+mosfetamp.cis Common-Source Amplifier
+cmosinverter.cis CMOS Inverter
+cmosinvertercap.cis CMOS Inverter (w/capacitance)
+cmosinverterslow.cis CMOS Inverter (slow transition)
+cmostransgate.cis CMOS Transmission Gate
+mux.cis CMOS Multiplexer
+samplenhold.cis Sample-and-Hold
+delayrc.cis Delayed Buffer
+leadingedge.cis Leading-Edge Detector
+switchfilter.cis Switchable Filter
+voltinvert.cis Voltage Inverter
+invertamp.cis Inverter Amplifier
+inv-osc.cis Inverter Oscillator
+-
++555 Timer Chip
+555square.cis Square Wave Generator
+555int.cis Internals
+555saw.cis Sawtooth Oscillator
+555lowduty.cis Low-duty-cycle Oscillator
+555monostable.cis Monostable Multivibrator
+555pulsemod.cis Pulse Width Modulator
+555sequencer.cis Pulse Sequencer
+555schmitt.cis Schmitt Trigger (inverting)
+555missing.cis Missing Pulse Detector
+-
++Active Filters
+filt-vcvs-lopass.cis VCVS Low-Pass Filter
+filt-vcvs-hipass.cis VCVS High-Pass Filter
+switchedcap.cis Switched-Capacitor Filter
+allpass1.cis Allpass
+allpass2.cis Allpass w/ Square
+-
++Logic Families
++RTL
+rtlinverter.cis RTL Inverter
+rtlnor.cis RTL NOR
+rtlnand.cis RTL NAND
+-
++DTL
+dtlinverter.cis DTL Inverter
+dtlnand.cis DTL NAND
+dtlnor.cis DTL NOR
+-
++TTL
+ttlinverter.cis TTL Inverter
+ttlnand.cis TTL NAND
+ttlnor.cis TTL NOR
+-
++NMOS
+nmosinverter.cis NMOS Inverter
+nmosinverter2.cis NMOS Inverter 2
+nmosnand.cis NMOS NAND
+-
++CMOS
+cmosinverter.cis CMOS Inverter
+cmosnand.cis CMOS NAND
+cmosnor.cis CMOS NOR
+cmosxor.cis CMOS XOR
+cmosff.cis CMOS Flip-Flop
+cmosmsff.cis CMOS Master-Slave Flip-Flop
+-
++ECL
+eclnor.cis ECL NOR/OR
+-
++Ternary
+3-cgand.cis CGAND
+3-cgor.cis CGOR
+3-invert.cis Complement (F210)
+3-f211.cis F211
+3-f220.cis F220
+3-f221.cis F221
+-
+-
++Combinational Logic
+xor.cis Exclusive OR
+halfadd.cis Half Adder
+fulladd.cis Full Adder
+decoder.cis 1-of-4 Decoder
+mux3state.cis 2-to-1 Mux
+majority.cis Majority Logic
+digcompare.cis 2-Bit Comparator
+7segdecoder.cis 7-Segment LED Decoder
+-
++Sequential Logic
++Flip-Flops
+nandff.cis SR Flip-Flop
+clockedsrff.cis Clocked SR Flip-Flop
+masterslaveff.cis Master-Slave Flip-Flop
+edgedff.cis Edge-Triggered D Flip-Flop
+jkff.cis JK Flip-Flop
+-
++Counters
+counter.cis 4-Bit Ripple Counter
+counter8.cis 8-Bit Ripple Counter
+synccounter.cis Synchronous Counter
+deccounter.cis Decimal Counter
+graycode.cis Gray Code Counter
+johnsonctr.cis Johnson Counter
+-
+divideby2.cis Divide-by-2
+divideby3.cis Divide-by-3
+ledflasher.cis LED Flasher
+traffic.cis Traffic Light
+dram.cis Dynamic RAM
+-
++Analog/Digital
+flashadc.cis Flash ADC
+deltasigma.cis Delta-Sigma ADC
+hfadc.cis Half-Flash (Subranging) ADC
+dac.cis Binary-Weighted DAC
+r2rladder.cis R-2R Ladder DAC
+swtreedac.cis Switch-Tree DAC
+digsine.cis Digital Sine Wave
+-
++Phase-Locked Loops
+xorphasedet.cis XOR Phase Detector
+pll.cis Type I PLL
+phasecomp.cis Phase Comparator (Type II)
+phasecompint.cis Phase Comparator Internals
+pll2.cis Type II PLL
+pll2a.cis Type II PLL (fast)
+freqdouble.cis Frequency Doubler
+-
++Transmission Lines
+tl.cis Simple TL
+tlstand.cis Standing Wave
+tlterm.cis Termination
+tlmismatch.cis Mismatched lines (Pulse)
+tlmis1.cis Mismatched lines (Standing Wave)
+tlmatch1.cis Impedance Matching (L-Section)
+tlmatch2.cis Impedance Matching (Shunt Stub)
+tlfreq.cis Stub Frequency Response
+tllopass.cis Low-Pass Filter
+tllight.cis Light Switch
+-
++Misc Devices
++JFETs
+jfetcurrentsrc.cis JFET Current Source
+jfetfollower.cis JFET Follower
+jfetfollower-nooff.cis JFET Follower w/zero offset
+jfetamp.cis Common-Source Amplifier
+volume.cis Volume Control
+-
++Tunnel Diodes
+tdiode.cis I/V Curve
+tdosc.cis LC Oscillator
+tdrelax.cis Relaxation Oscillator
+-
++Memristors
+mr.cis Memristor
+mr-sine.cis Sine Wave
+mr-square.cis Square Wave
+mr-triangle.cis Triangle Wave
+mr-sine2.cis Hard-Switching 1
+mr-sine3.cis Hard-Switching 2
+mr-crossbar.cis Crossbar Memory
+-
++Triodes
+triode.cis Triode
+triodeamp.cis Amplifier
+-
++Silicon-Controlled Rectifiers
+scr.cis SCR
+scractrig.cis AC Trigger
+-
++Current Conveyor
+cc2.cis CCII+
+cc2n.cis CCII-
+ccinductor.cis Inductor Simulator
+cc2imp.cis CCII+ Implementation
+cc2impn.cis CCII- Implementation
+cciamp.cis Current Amplifier
+ccvccs.cis VCCS
+ccdiff.cis Current Differentiator
+ccint.cis Current Integrator
+ccitov.cis Current-Controlled Voltage Source
+-
++Spark Gap
+spark-sawtooth.cis Sawtooth Generator
+tesla.cis Tesla Coil
+spark-marx.cis Marx Generator
+-
+-
+blank.cis Blank Circuit
