@@ -2115,7 +2115,7 @@ public class CirSim extends JFrame implements ComponentListener,
 		int stackptr = 0;
 		stack[stackptr++] = menu;
 		try {
-			ByteArrayOutputStream ba = readUrlData(getClass().getResource("cis/setuplist.txt"));
+			ByteArrayOutputStream ba = readUrlData(getClass().getResource("cis/setuplist.cfg"));
 			byte b[] = ba.toByteArray();
 			int len = ba.size();
 			int p;
