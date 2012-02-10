@@ -144,7 +144,7 @@ public class CirSim extends JFrame implements ComponentListener,
 	Rectangle circuitArea;
 	int circuitBottom;
 	Vector undoStack, redoStack;
-	static final String appVersion = "jCircSim++ v1.0";
+	static final String appVersion = "jCircSim v0.2";
 
 	int getrand(int x) {
 		int q = random.nextInt();
@@ -244,6 +244,8 @@ public class CirSim extends JFrame implements ComponentListener,
 		cv.addKeyListener(this);
 		main.add(cv);
 
+		cv.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		
 		mainMenu = new PopupMenu();
 		MenuBar mb = null;
 		if (useFrame)
@@ -2681,7 +2683,6 @@ public class CirSim extends JFrame implements ComponentListener,
 		dragging = true;
 		if (tempMouseMode != MODE_ADD_ELM || addingClass == null)
 			return;
-
 		int x0 = snapGrid(e.getX());
 		int y0 = snapGrid(e.getY());
 		if (!circuitArea.contains(x0, y0))
@@ -2838,6 +2839,7 @@ public class CirSim extends JFrame implements ComponentListener,
 				mouseMode = MODE_SELECT;
 			else if (s.length() > 0) {
 				try {
+					cv.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 					addingClass = Class.forName(s);
 				} catch (Exception ee) {
 					ee.printStackTrace();
@@ -3021,11 +3023,13 @@ public class CirSim extends JFrame implements ComponentListener,
 					|| !(elm.needsShortcut() && elm.getDumpClass() == c))
 				return;
 			mouseMode = MODE_ADD_ELM;
+			cv.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 			mouseModeStr = c.getName();
 			addingClass = c;
 		}
 		if (e.getKeyChar() == ' ') {
 			mouseMode = MODE_SELECT;
+			cv.setCursor(new Cursor(Cursor.HAND_CURSOR));
 			mouseModeStr = "Select";
 		}
 		tempMouseMode = mouseMode;
