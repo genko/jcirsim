@@ -1,0 +1,4 @@
+= jCircSim
+
+This program is a electronic circuit simulator originaly written by Paul Falstad
+from www.falstad.com . This version introduces file import/export and a standalone java gui.
