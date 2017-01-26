@@ -25,6 +25,7 @@ public abstract class CircuitElm implements Editable {
 	Rectangle boundingBox;
 	boolean noDiagonal;
 	public boolean selected;
+	private String name;
 
 	int getDumpType() {
 		return 0;
@@ -100,7 +101,7 @@ public abstract class CircuitElm implements Editable {
 
 	String dump() {
 		int t = getDumpType();
-		return (t < 127 ? ((char) t) + " " : t + " ") + x + " " + y + " " + x2
+		return (t < 127 ? ((char) t) + " " : t + " ") + " " + getName() + " " + x + " " + y + " " + x2
 				+ " " + y2 + " " + flags;
 	}
 
@@ -482,12 +483,12 @@ public abstract class CircuitElm implements Editable {
 		int dpx = (int) (dpx1 * hs);
 		int dpy = (int) (dpy1 * hs);
 		if (dpx == 0) {
-			g.drawString(s, xc - w / 2, yc - abs(dpy) - 2);
+			g.drawString(getName()+"="+s, xc - w / 2, yc - abs(dpy) - 2);
 		} else {
 			int xx = xc + abs(dpx) + 2;
 			if (this instanceof VoltageElm || (x < x2 && y > y2))
 				xx = xc - (w + abs(dpx) + 2);
-			g.drawString(s, xx, yc + dpy + ya);
+			g.drawString(getName()+"="+s, xx, yc + dpy + ya);
 		}
 	}
 
@@ -786,5 +787,13 @@ public abstract class CircuitElm implements Editable {
 
 	boolean needsShortcut() {
 		return false;
+	}
+
+	protected String getName() {
+		return name;
+	}
+
+	protected void setName(String name) {
+		this.name = name;
 	}
 }

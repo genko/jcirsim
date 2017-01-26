@@ -23,9 +23,14 @@ import java.util.StringTokenizer;
 	String dump() {
 	    return super.dump() + " " + inductance + " " + current;
 	}
+	
+	Point ps3, ps4;
+	
 	void setPoints() {
 	    super.setPoints();
 	    calcLeads(32);
+	    ps3 = new Point();
+	    ps4 = new Point();
 	}
 	void draw(Graphics g) {
 	    double v1 = volts[0];
@@ -35,7 +40,28 @@ import java.util.StringTokenizer;
 	    setBbox(point1, point2, hs);
 	    draw2Leads(g);
 	    setPowerColor(g, false);
-	    drawCoil(g, 8, lead1, lead2, v1, v2);
+	    int segments = 16;
+	    double segf = 1./segments;
+	    
+	    if (!sim.euroInductorCheckItem.getState()) {
+		// draw coil
+	    	drawCoil(g, 8, lead1, lead2, v1, v2);
+	    } else {
+	    	// draw filled rectangle
+	    	setVoltageColor(g, v1);
+	    	interpPoint2(lead1, lead2, ps1, ps2, 0, hs);
+	    	drawThickLine(g, ps1, ps2);
+	    	for (i = 0; i != segments; i++) {
+	    		double v = v1+(v2-v1)*i/segments;
+	    		setVoltageColor(g, v);
+	    		interpPoint2(lead1, lead2, ps1, ps2, i*segf, hs);
+	    		interpPoint2(lead1, lead2, ps3, ps4, (i+1)*segf, hs);
+	    		//draw horizontal lines in different voltage colors
+	    		drawThickLine(g, ps1, ps4);
+	    	}
+	    	interpPoint2(lead1, lead2, ps1, ps2, 1, hs);
+			drawThickLine(g, ps1, ps2);
+	    }
 	    if (sim.showValuesCheckItem.getState()) {
 		String s = getShortUnitText(inductance, "H");
 		drawValues(g, s, hs);

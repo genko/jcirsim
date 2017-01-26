@@ -50,6 +50,7 @@ public class CirSim extends JFrame implements ComponentListener,
 	CheckboxMenuItem showValuesCheckItem;
 	CheckboxMenuItem conductanceCheckItem;
 	CheckboxMenuItem euroResistorCheckItem;
+	CheckboxMenuItem euroInductorCheckItem;
 	CheckboxMenuItem printableCheckItem;
 	CheckboxMenuItem conventionCheckItem;
 	Scrollbar speedBar;
@@ -304,7 +305,9 @@ public class CirSim extends JFrame implements ComponentListener,
 		// m.add(conductanceCheckItem = getCheckItem("Show Conductance"));
 		m.add(smallGridCheckItem = getCheckItem("Small Grid"));
 		m.add(euroResistorCheckItem = getCheckItem("European Resistors"));
+		m.add(euroInductorCheckItem = getCheckItem("European Induktor"));
 		euroResistorCheckItem.setState(euro);
+		euroInductorCheckItem.setState(euro);
 		m.add(printableCheckItem = getCheckItem("White Background"));
 		printableCheckItem.setState(printable);
 		m
@@ -2247,6 +2250,7 @@ public class CirSim extends JFrame implements ComponentListener,
 					}
 					if (tint >= '0' && tint <= '9')
 						tint = new Integer(type).intValue();
+					String name = st.nextToken();
 					int x1 = new Integer(st.nextToken()).intValue();
 					int y1 = new Integer(st.nextToken()).intValue();
 					int x2 = new Integer(st.nextToken()).intValue();
@@ -2277,6 +2281,7 @@ public class CirSim extends JFrame implements ComponentListener,
 					oarr[5] = st;
 					ce = (CircuitElm) cstr.newInstance(oarr);
 					ce.setPoints();
+					ce.setName(name);
 					elmList.addElement(ce);
 				} catch (java.lang.reflect.InvocationTargetException ee) {
 					ee.getTargetException().printStackTrace();
