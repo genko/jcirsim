@@ -2227,6 +2227,7 @@ public class CirSim extends JFrame implements ComponentListener,
 			StringTokenizer st = new StringTokenizer(line);
 			while (st.hasMoreTokens()) {
 				String type = st.nextToken();
+				String name = "";
 				int tint = type.charAt(0);
 				try {
 					if (tint == 'o') {
@@ -2250,7 +2251,10 @@ public class CirSim extends JFrame implements ComponentListener,
 					}
 					if (tint >= '0' && tint <= '9')
 						tint = new Integer(type).intValue();
-					String name = st.nextToken();
+					if (type.length()>1)
+					{
+						name = type.substring(1);
+					}
 					int x1 = new Integer(st.nextToken()).intValue();
 					int y1 = new Integer(st.nextToken()).intValue();
 					int x2 = new Integer(st.nextToken()).intValue();
