@@ -3,6 +3,7 @@ package de.mobillinux.jcircsim.elements;
 import java.awt.*;
 import java.util.StringTokenizer;
 
+import de.mobillinux.jcircsim.CirSim;
 import de.mobillinux.jcircsim.EditInfo;
 
 public class MemristorElm extends CircuitElm {
@@ -112,7 +113,7 @@ public class MemristorElm extends CircuitElm {
 	public void getInfo(String arr[]) {
 		arr[0] = "memristor";
 		getBasicInfo(arr);
-		arr[3] = "R = " + getUnitText(resistance, sim.ohmString);
+		arr[3] = "R = " + getUnitText(resistance, CirSim.ohmString);
 		arr[4] = "P = " + getUnitText(getPower(), "W");
 	}
 
@@ -121,7 +122,7 @@ public class MemristorElm extends CircuitElm {
 	}
 
 	public String getScopeUnits(int x) {
-		return (x == 2) ? sim.ohmString : (x == 1) ? "W" : "V";
+		return (x == 2) ? CirSim.ohmString : (x == 1) ? "W" : "V";
 	}
 
 	public EditInfo getEditInfo(int n) {

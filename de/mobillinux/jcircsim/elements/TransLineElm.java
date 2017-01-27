@@ -2,6 +2,7 @@ package de.mobillinux.jcircsim.elements;
 import java.awt.*;
 import java.util.StringTokenizer;
 
+import de.mobillinux.jcircsim.CirSim;
 import de.mobillinux.jcircsim.EditInfo;
 
 public class TransLineElm extends CircuitElm {
@@ -188,7 +189,7 @@ public class TransLineElm extends CircuitElm {
     }
     public void getInfo(String arr[]) {
 	arr[0] = "transmission line";
-	arr[1] = getUnitText(imped, sim.ohmString);
+	arr[1] = getUnitText(imped, CirSim.ohmString);
 	arr[2] = "length = " + getUnitText(2.9979e8*delay, "m");
 	arr[3] = "delay = " + getUnitText(delay, "s");
     }

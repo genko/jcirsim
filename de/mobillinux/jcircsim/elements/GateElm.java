@@ -105,7 +105,6 @@ public abstract class GateElm extends CircuitElm {
 	}
 	abstract boolean calcFunction();
 	public void doStep() {
-	    int i;
 	    boolean f = calcFunction();
 	    if (isInverting())
 		f = !f;

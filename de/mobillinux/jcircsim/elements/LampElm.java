@@ -2,6 +2,7 @@ package de.mobillinux.jcircsim.elements;
 import java.awt.*;
 import java.util.StringTokenizer;
 
+import de.mobillinux.jcircsim.CirSim;
 import de.mobillinux.jcircsim.EditInfo;
 
 public class LampElm extends CircuitElm {
@@ -142,7 +143,7 @@ public class LampElm extends CircuitElm {
 	public void getInfo(String arr[]) {
 	    arr[0] = "lamp";
 	    getBasicInfo(arr);
-	    arr[3] = "R = " + getUnitText(resistance, sim.ohmString);
+	    arr[3] = "R = " + getUnitText(resistance, CirSim.ohmString);
 	    arr[4] = "P = " + getUnitText(getPower(), "W");
 	    arr[5] = "T = " + ((int) temp) + " K";
 	}

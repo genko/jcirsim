@@ -7,6 +7,6 @@ public class CircuitNode {
 	boolean internal;
 
 	public CircuitNode() {
-		links = new Vector();
+		links = new Vector<Object>();
 	}
 }

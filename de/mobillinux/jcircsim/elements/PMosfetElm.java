@@ -1,5 +1,5 @@
 package de.mobillinux.jcircsim.elements;
 public class PMosfetElm extends MosfetElm {
 	public PMosfetElm(int xx, int yy) { super(xx, yy, true); }
-	public Class getDumpClass() { return MosfetElm.class; }
+	public Class<MosfetElm> getDumpClass() { return MosfetElm.class; }
     }

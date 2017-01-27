@@ -1,6 +1,5 @@
 package de.mobillinux.jcircsim;
 import java.awt.*;
-import java.awt.event.*;
 
 public class EditDialogLayout implements LayoutManager {
 	public EditDialogLayout() {
@@ -23,7 +22,6 @@ public class EditDialogLayout implements LayoutManager {
 	public void layoutContainer(Container target) {
 		Insets insets = target.insets();
 		int targetw = target.size().width - insets.left - insets.right;
-		int targeth = target.size().height - (insets.top + insets.bottom);
 		int i;
 		int h = insets.top;
 		int pw = 300;

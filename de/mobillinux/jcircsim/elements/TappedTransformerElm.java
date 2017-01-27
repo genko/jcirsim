@@ -130,9 +130,6 @@ public class TappedTransformerElm extends CircuitElm {
 	    // 
 	    // first winding goes from node 0 to 1, second is from 2 to 3 to 4
 	    double l1 = inductance;
-	    // second winding is split in half, so each part has half the turns;
-	    // we square the 1/2 to divide by 4
-	    double l2 = inductance*ratio*ratio/4;
 	    double cc = .99;
 	    //double m1 = .999*Math.sqrt(l1*l2);
 	    // mutual inductance between two halves of the second winding

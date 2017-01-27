@@ -2,6 +2,7 @@ package de.mobillinux.jcircsim.elements;
 import java.awt.*;
 import java.util.StringTokenizer;
 
+import de.mobillinux.jcircsim.CirSim;
 import de.mobillinux.jcircsim.EditInfo;
 
 public class SparkGapElm extends CircuitElm {
@@ -42,9 +43,6 @@ public class SparkGapElm extends CircuitElm {
     }
     
     public void draw(Graphics g) {
-	int i;
-	double v1 = volts[0];
-	double v2 = volts[1];
 	setBbox(point1, point2, 8);
 	draw2Leads(g);
 	setPowerColor(g, true);
@@ -87,8 +85,8 @@ public class SparkGapElm extends CircuitElm {
 	arr[0] = "spark gap";
 	getBasicInfo(arr);
 	arr[3] = state ? "on" : "off";
-	arr[4] = "Ron = " + getUnitText(onresistance, sim.ohmString);
-	arr[5] = "Roff = " + getUnitText(offresistance, sim.ohmString);
+	arr[4] = "Ron = " + getUnitText(onresistance, CirSim.ohmString);
+	arr[5] = "Roff = " + getUnitText(offresistance, CirSim.ohmString);
 	arr[6] = "Vbreakdown = " + getUnitText(breakdown, "V");
     }
     public EditInfo getEditInfo(int n) {

@@ -37,7 +37,7 @@ public class ImportDialog extends Dialog implements ActionListener {
 	exportButton.addActionListener(this);
 	add(closeButton = new Button("Close"));
 	closeButton.addActionListener(this);
-	Point x = cframe.main.getLocationOnScreen();
+	Point x = CirSim.main.getLocationOnScreen();
 	resize(400, 300);
 	Dimension d = getSize();
 	setLocation(x.x + (cframe.winSize.width-d.width)/2,
@@ -48,7 +48,6 @@ public class ImportDialog extends Dialog implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-	int i;
 	Object src = e.getSource();
 	if (src == importButton) {
 	    cframe.readSetup(text.getText());
@@ -82,7 +81,6 @@ public class ImportDialog extends Dialog implements ActionListener {
 	if (src == exportButton) {
 		String filename = File.separator+"tmp";
 		JFileChooser fc = new JFileChooser(new File(filename));
-		int res = fc.showSaveDialog(cframe);
 		File selFile = fc.getSelectedFile();
 		Writer out;
 	    try {
@@ -100,7 +98,7 @@ public class ImportDialog extends Dialog implements ActionListener {
 	if (ev.id == Event.WINDOW_DESTROY) {
 	    CirSim.main.requestFocus();
 	    setVisible(false);
-	    cframe.impDialog = null;
+	    CirSim.impDialog = null;
 	    return true;
 	}
 	return super.handleEvent(ev);

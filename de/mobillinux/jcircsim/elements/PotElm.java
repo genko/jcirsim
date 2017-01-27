@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.StringTokenizer;
 
+import de.mobillinux.jcircsim.CirSim;
 import de.mobillinux.jcircsim.EditInfo;
 
 public class PotElm extends CircuitElm implements AdjustmentListener {
@@ -40,10 +41,10 @@ public class PotElm extends CircuitElm implements AdjustmentListener {
     public String dump() { return super.dump() + " " + maxResistance + " " +
 	    position + " " + sliderText; }
     void createSlider() {
-	sim.main.add(label = new Label(sliderText, Label.CENTER));
+	CirSim.main.add(label = new Label(sliderText, Label.CENTER));
 	int value = (int) (position*100);
-	sim.main.add(slider = new Scrollbar(Scrollbar.HORIZONTAL, value, 1, 0, 101));
-	sim.main.validate();
+	CirSim.main.add(slider = new Scrollbar(Scrollbar.HORIZONTAL, value, 1, 0, 101));
+	CirSim.main.validate();
 	slider.addAdjustmentListener(this);
     }
     public void adjustmentValueChanged(AdjustmentEvent e) {
@@ -51,8 +52,8 @@ public class PotElm extends CircuitElm implements AdjustmentListener {
 	setPoints();
     }
     public void delete() {
-	sim.main.remove(label);
-	sim.main.remove(slider);
+	CirSim.main.remove(label);
+	CirSim.main.remove(slider);
     }
     Point post3, corner2, arrowPoint, midpoint, arrow1, arrow2;
     Point ps3, ps4;
@@ -172,8 +173,8 @@ public class PotElm extends CircuitElm implements AdjustmentListener {
     public void getInfo(String arr[]) {
 	arr[0] = "potentiometer";
 	arr[1] = "Vd = " + getVoltageDText(getVoltageDiff());
-	arr[2] = "R1 = " + getUnitText(resistance1, sim.ohmString);
-	arr[3] = "R2 = " + getUnitText(resistance2, sim.ohmString);
+	arr[2] = "R1 = " + getUnitText(resistance1, CirSim.ohmString);
+	arr[3] = "R2 = " + getUnitText(resistance2, CirSim.ohmString);
 	arr[4] = "I1 = " + getCurrentDText(current1);
 	arr[5] = "I2 = " + getCurrentDText(current2);
     }

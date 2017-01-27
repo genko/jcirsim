@@ -44,7 +44,7 @@ public abstract class CircuitElm implements Editable {
 		return 0;
 	}
 
-	public Class getDumpClass() {
+	public Class<? extends CircuitElm> getDumpClass() {
 		return getClass();
 	}
 
@@ -185,8 +185,6 @@ public abstract class CircuitElm implements Editable {
 	}
 
 	void interpPoint(Point a, Point b, Point c, double f) {
-		int xpd = b.x - a.x;
-		int ypd = b.y - a.y;
 		/*
 		 * double q = (a.x*(1-f)+b.x*f+.48); System.out.println(q + " " + (int)
 		 * q);
@@ -196,8 +194,6 @@ public abstract class CircuitElm implements Editable {
 	}
 
 	void interpPoint(Point a, Point b, Point c, double f, double g) {
-		int xpd = b.x - a.x;
-		int ypd = b.y - a.y;
 		int gx = b.y - a.y;
 		int gy = a.x - b.x;
 		g /= Math.sqrt(gx * gx + gy * gy);
@@ -212,8 +208,6 @@ public abstract class CircuitElm implements Editable {
 	}
 
 	void interpPoint2(Point a, Point b, Point c, Point d, double f, double g) {
-		int xpd = b.x - a.x;
-		int ypd = b.y - a.y;
 		int gx = b.y - a.y;
 		int gy = a.x - b.x;
 		g /= Math.sqrt(gx * gx + gy * gy);
@@ -434,8 +428,6 @@ public abstract class CircuitElm implements Editable {
 
 	void setBbox(Point p1, Point p2, double w) {
 		setBbox(p1.x, p1.y, p2.x, p2.y);
-		int gx = p2.y - p1.y;
-		int gy = p1.x - p2.x;
 		int dpx = (int) (dpx1 * w);
 		int dpy = (int) (dpy1 * w);
 		adjustBbox(p1.x + dpx, p1.y + dpy, p1.x - dpx, p1.y - dpy);
@@ -506,7 +498,6 @@ public abstract class CircuitElm implements Editable {
 	}
 
 	void drawCoil(Graphics g, int hs, Point p1, Point p2, double v1, double v2) {
-		double len = distance(p1, p2);
 		int segments = 30; // 10*(int) (len/10);
 		int i;
 		double segf = 1. / segments;

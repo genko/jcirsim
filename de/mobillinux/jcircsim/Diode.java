@@ -36,8 +36,6 @@ public class Diode {
 
 	double limitStep(double vnew, double vold) {
 		double arg;
-		double oo = vnew;
-
 		// check new voltage; has current changed by factor of e^2?
 		if (vnew > vcrit && Math.abs(vnew - vold) > (vt + vt)) {
 			if (vold > 0) {

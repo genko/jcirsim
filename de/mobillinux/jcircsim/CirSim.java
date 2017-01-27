@@ -15,16 +15,8 @@ import java.io.ByteArrayOutputStream;
 import java.util.StringTokenizer;
 import java.lang.reflect.Constructor;
 import java.net.URLEncoder;
-
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JToolBar;
-import javax.swing.SwingConstants;
-import javax.swing.border.BevelBorder;
 
 import de.mobillinux.jcircsim.elements.CapacitorElm;
 import de.mobillinux.jcircsim.elements.CircuitElm;
@@ -41,6 +33,11 @@ import de.mobillinux.jcircsim.elements.WireElm;
 public class CirSim extends JFrame implements ComponentListener,
 		ActionListener, AdjustmentListener, MouseMotionListener, MouseListener,
 		ItemListener, KeyListener {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8060088867802601628L;
 
 	Thread engine = null;
 
@@ -104,7 +101,7 @@ public class CirSim extends JFrame implements ComponentListener,
 	CheckboxMenuItem scopeResistMenuItem;
 	CheckboxMenuItem scopeVceIcMenuItem;
 	MenuItem scopeSelectYMenuItem;
-	Class addingClass;
+	Class<?> addingClass;
 	public int mouseMode = MODE_SELECT;
 	int tempMouseMode = MODE_SELECT;
 	String mouseModeStr = "Select";
@@ -143,8 +140,8 @@ public class CirSim extends JFrame implements ComponentListener,
 	static final int HINT_3DB_C = 3;
 	static final int HINT_TWINT = 4;
 	static final int HINT_3DB_L = 5;
-	public Vector elmList;
-	Vector setupList;
+	public Vector<CircuitElm> elmList;
+	Vector<?> setupList;
 	public CircuitElm dragElm;
 
 	CircuitElm menuElm;
@@ -172,13 +169,13 @@ public class CirSim extends JFrame implements ComponentListener,
 	int scopeColCount[];
 	static EditDialog editDialog;
 	static ImportDialog impDialog;
-	Class dumpTypes[];
+	Class<?> dumpTypes[];
 	public static String muString = "u";
 	public static String ohmString = "ohm";
 	String clipboard;
 	Rectangle circuitArea;
 	int circuitBottom;
-	Vector undoStack, redoStack;
+	Vector<String> undoStack, redoStack;
 	static final String appVersion = "jCircSim v0.2";
 
 	public int getrand(int x) {
@@ -509,10 +506,10 @@ public class CirSim extends JFrame implements ComponentListener,
 		powerLabel.disable();
 
 		setGrid();
-		elmList = new Vector();
-		setupList = new Vector();
-		undoStack = new Vector();
-		redoStack = new Vector();
+		elmList = new Vector<CircuitElm>();
+		setupList = new Vector<Object>();
+		undoStack = new Vector<String>();
+		redoStack = new Vector<String>();
 
 		scopes = new Scope[20];
 		scopeColCount = new int[20];
@@ -617,7 +614,7 @@ public class CirSim extends JFrame implements ComponentListener,
 
 	CheckboxMenuItem getClassCheckItem(String s, String t) {
 		try {
-			Class c = Class.forName(t);
+			Class<?> c = Class.forName(t);
 			CircuitElm elm = constructElement(c, 0, 0);
 			register(c, elm);
 			int dt = 0;
@@ -639,13 +636,13 @@ public class CirSim extends JFrame implements ComponentListener,
 		return mi;
 	}
 
-	void register(Class c, CircuitElm elm) {
+	void register(Class<?> c, CircuitElm elm) {
 		int t = elm.getDumpType();
 		if (t == 0) {
 			System.out.println("no dump type: " + c);
 			return;
 		}
-		Class dclass = elm.getDumpClass();
+		Class<?> dclass = elm.getDumpClass();
 		if (dumpTypes[t] == dclass)
 			return;
 		if (dumpTypes[t] != null) {
@@ -1064,7 +1061,7 @@ public class CirSim extends JFrame implements ComponentListener,
 		cv.repaint();
 	}
 
-	public Vector nodeList;
+	public Vector<CircuitNode> nodeList;
 	CircuitElm voltageSources[];
 
 	public CircuitNode getCircuitNode(int n) {
@@ -1087,7 +1084,7 @@ public class CirSim extends JFrame implements ComponentListener,
 		stopElm = null;
 		int i, j;
 		int vscount = 0;
-		nodeList = new Vector();
+		nodeList = new Vector<CircuitNode>();
 		boolean gotGround = false;
 		boolean gotRail = false;
 		CircuitElm volt = null;
@@ -1199,7 +1196,6 @@ public class CirSim extends JFrame implements ComponentListener,
 		circuitMatrixSize = circuitMatrixFullSize = matrixSize;
 		circuitRowInfo = new RowInfo[matrixSize];
 		circuitPermute = new int[matrixSize];
-		int vs = 0;
 		for (i = 0; i != matrixSize; i++)
 			circuitRowInfo[i] = new RowInfo();
 		circuitNeedsMap = false;
@@ -1213,7 +1209,6 @@ public class CirSim extends JFrame implements ComponentListener,
 
 		// determine nodes that are unconnected
 		boolean closure[] = new boolean[nodeList.size()];
-		boolean tempclosure[] = new boolean[nodeList.size()];
 		boolean changed = true;
 		closure[0] = true;
 		while (changed) {
@@ -2302,17 +2297,17 @@ public class CirSim extends JFrame implements ComponentListener,
 					int y2 = new Integer(st.nextToken()).intValue();
 					int f = new Integer(st.nextToken()).intValue();
 					CircuitElm ce = null;
-					Class cls = dumpTypes[tint];
+					Class<?> cls = dumpTypes[tint];
 					if (cls == null) {
 						System.out.println("unrecognized dump type: " + type);
 						break;
 					}
 					// find element class
-					Class carr[] = new Class[6];
+					Class<?> carr[] = new Class[6];
 					// carr[0] = getClass();
 					carr[0] = carr[1] = carr[2] = carr[3] = carr[4] = int.class;
 					carr[5] = StringTokenizer.class;
-					Constructor cstr = null;
+					Constructor<?> cstr = null;
 					cstr = cls.getConstructor(carr);
 
 					// invoke constructor with starting coordinates
@@ -2578,13 +2573,11 @@ public class CirSim extends JFrame implements ComponentListener,
 
 	void removeZeroLengthElements() {
 		int i;
-		boolean changed = false;
 		for (i = elmList.size() - 1; i >= 0; i--) {
 			CircuitElm ce = getElm(i);
 			if (ce.x == ce.x2 && ce.y == ce.y2) {
 				elmList.removeElementAt(i);
 				ce.delete();
-				changed = true;
 			}
 		}
 		needAnalyze();
@@ -2648,7 +2641,6 @@ public class CirSim extends JFrame implements ComponentListener,
 				int jn = ce.getPostCount();
 				for (j = 0; j != jn; j++) {
 					Point pt = ce.getPost(j);
-					int dist = distanceSq(x, y, pt.x, pt.y);
 					if (distanceSq(pt.x, pt.y, x, y) < 26) {
 						mouseElm = ce;
 						mousePost = j;
@@ -2742,12 +2734,12 @@ public class CirSim extends JFrame implements ComponentListener,
 		dragElm = constructElement(addingClass, x0, y0);
 	}
 
-	CircuitElm constructElement(Class c, int x0, int y0) {
+	CircuitElm constructElement(Class<?> c, int x0, int y0) {
 		// find element class
-		Class carr[] = new Class[2];
+		Class<?> carr[] = new Class[2];
 		// carr[0] = getClass();
 		carr[0] = carr[1] = int.class;
-		Constructor cstr = null;
+		Constructor<?> cstr = null;
 		try {
 			cstr = c.getConstructor(carr);
 		} catch (NoSuchMethodException ee) {
@@ -3065,7 +3057,7 @@ public class CirSim extends JFrame implements ComponentListener,
 
 	public void keyTyped(KeyEvent e) {
 		if (e.getKeyChar() > ' ' && e.getKeyChar() < 127) {
-			Class c = dumpTypes[e.getKeyChar()];
+			Class<?> c = dumpTypes[e.getKeyChar()];
 			if (c == null || c == Scope.class)
 				return;
 			CircuitElm elm = null;

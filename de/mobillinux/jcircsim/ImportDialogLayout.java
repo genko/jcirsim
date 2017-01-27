@@ -13,10 +13,7 @@ public class ImportDialogLayout implements LayoutManager {
     }
     public void layoutContainer(Container target) {
 	Insets insets = target.insets();
-	int targetw = target.size().width - insets.left - insets.right;
-	int targeth = target.size().height - (insets.top+insets.bottom);
 	int i;
-	int pw = 300;
 	if (target.getComponentCount() == 0)
 	    return;
 	Component cl = target.getComponent(target.getComponentCount()-1);

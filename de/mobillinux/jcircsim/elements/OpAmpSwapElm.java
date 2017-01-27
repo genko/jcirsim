@@ -4,5 +4,5 @@ public class OpAmpSwapElm extends OpAmpElm {
 	    super(xx, yy);
 	    flags |= FLAG_SWAP;
 	}
-	public Class getDumpClass() { return OpAmpElm.class; }
+	public Class<OpAmpElm> getDumpClass() { return OpAmpElm.class; }
     }

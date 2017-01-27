@@ -112,7 +112,6 @@ public abstract class ChipElm extends CircuitElm {
 	public void setPoints() {
 		if (x2 - x > sizeX * cspc2 && this == sim.dragElm)
 			setSize(2);
-		int hs = cspc;
 		int x0 = x + cspc2;
 		int y0 = y;
 		int xr = x0 - cspc;
@@ -199,7 +198,6 @@ public abstract class ChipElm extends CircuitElm {
 	}
 
 	public String dump() {
-		int t = getDumpType();
 		String s = super.dump();
 		if (needsBits())
 			s += " " + bits;

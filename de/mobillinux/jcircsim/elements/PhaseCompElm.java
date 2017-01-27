@@ -1,5 +1,4 @@
 package de.mobillinux.jcircsim.elements;
-import java.awt.*;
 import java.util.StringTokenizer;
 
 public class PhaseCompElm extends ChipElm {

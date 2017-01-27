@@ -54,7 +54,7 @@ public class EditDialog extends Dialog implements AdjustmentListener, ActionList
 		applyButton.addActionListener(this);
 		add(okButton = new Button("OK"));
 		okButton.addActionListener(this);
-		Point x = cframe.main.getLocationOnScreen();
+		Point x = CirSim.main.getLocationOnScreen();
 		Dimension d = getSize();
 		setLocation(x.x + (cframe.winSize.width - d.width) / 2, x.y
 				+ (cframe.winSize.height - d.height) / 2);
@@ -167,9 +167,9 @@ public class EditDialog extends Dialog implements AdjustmentListener, ActionList
 		}
 		if (e.getSource() == okButton) {
 			apply();
-			cframe.main.requestFocus();
+			CirSim.main.requestFocus();
 			setVisible(false);
-			cframe.editDialog = null;
+			CirSim.editDialog = null;
 		}
 		if (e.getSource() == applyButton)
 			apply();
@@ -215,16 +215,16 @@ public class EditDialog extends Dialog implements AdjustmentListener, ActionList
 		}
 		if (changed) {
 			setVisible(false);
-			cframe.editDialog = new EditDialog(elm, cframe);
-			cframe.editDialog.show();
+			CirSim.editDialog = new EditDialog(elm, cframe);
+			CirSim.editDialog.show();
 		}
 	}
 
 	public boolean handleEvent(Event ev) {
 		if (ev.id == Event.WINDOW_DESTROY) {
-			cframe.main.requestFocus();
+			CirSim.main.requestFocus();
 			setVisible(false);
-			cframe.editDialog = null;
+			CirSim.editDialog = null;
 			return true;
 		}
 		return super.handleEvent(ev);

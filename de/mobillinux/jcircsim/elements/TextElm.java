@@ -7,14 +7,14 @@ import de.mobillinux.jcircsim.EditInfo;
 
 public class TextElm extends CircuitElm {
     String text;
-    Vector lines;
+    Vector<String> lines;
     int size;
     final int FLAG_CENTER = 1;
     final int FLAG_BAR = 2;
     public TextElm(int xx, int yy) {
 	super(xx, yy);
 	text = "hello";
-	lines = new Vector();
+	lines = new Vector<String>();
 	lines.add(text);
 	size = 24;
     }
@@ -29,7 +29,7 @@ public class TextElm extends CircuitElm {
     }
     void split() {
 	int i;
-	lines = new Vector();
+	lines = new Vector<String>();
 	StringBuffer sb = new StringBuffer(text);
 	for (i = 0; i < sb.length(); i++) {
 	    char c = sb.charAt(i);
