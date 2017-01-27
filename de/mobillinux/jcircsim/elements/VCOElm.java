@@ -72,11 +72,7 @@ public class VCOElm extends ChipElm {
 	void computeCurrent() {
 	    if (cResistance == 0)
 	    {
-//	    double c = cDir*(pins[4].current + pins[5].current) +
-//		(volts[3]-volts[2])/cResistance;
-//	    pins[2].current = -c;
-//	    pins[3].current = c;
-//	    pins[0].current = -pins[4].current;
+
 		return;
 	    }
 	}

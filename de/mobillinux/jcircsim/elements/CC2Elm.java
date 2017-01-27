@@ -2,8 +2,6 @@ package de.mobillinux.jcircsim.elements;
 import java.awt.*;
 import java.util.StringTokenizer;
 
-import de.mobillinux.jcircsim.elements.ChipElm.Pin;
-
 public class CC2Elm extends ChipElm {
 	double gain;
 
@@ -79,7 +77,7 @@ class CC2NegElm extends CC2Elm {
 		super(xx, yy, -1);
 	}
 
-	public Class getDumpClass() {
+	public Class<CC2Elm> getDumpClass() {
 		return CC2Elm.class;
 	}
 }

@@ -1,8 +1,5 @@
 package de.mobillinux.jcircsim.elements;
-import java.awt.*;
 import java.util.StringTokenizer;
-
-import de.mobillinux.jcircsim.elements.ChipElm.Pin;
 
 public class ADCElm extends ChipElm {
 	public ADCElm(int xx, int yy) {

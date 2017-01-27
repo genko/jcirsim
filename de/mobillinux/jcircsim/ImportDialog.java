@@ -62,16 +62,21 @@ public class ImportDialog extends Dialog implements ActionListener {
 		JFileChooser fc = new JFileChooser(new File(filename));
 		fc.showOpenDialog(cframe);
 		File selFile = fc.getSelectedFile();
+		Scanner scanner=null;
 		try {
-		  Scanner scanner = new Scanner(new FileInputStream(selFile));
+		  scanner = new Scanner(new FileInputStream(selFile));
 	      while (scanner.hasNextLine()){
 	        text.append(scanner.nextLine()+"\n");
 	      }
 		}
 	    catch (Exception ex)
-	    {
+	    {  
 	    	  System.out.println("Error importing file");
 	    }
+		finally
+		{
+			if (scanner!=null) scanner.close();
+		}
 	}	
 	
 	if (src == exportButton) {

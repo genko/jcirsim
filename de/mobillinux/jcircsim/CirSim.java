@@ -16,7 +16,15 @@ import java.util.StringTokenizer;
 import java.lang.reflect.Constructor;
 import java.net.URLEncoder;
 
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JToolBar;
+import javax.swing.SwingConstants;
+import javax.swing.border.BevelBorder;
 
 import de.mobillinux.jcircsim.elements.CapacitorElm;
 import de.mobillinux.jcircsim.elements.CircuitElm;
@@ -51,9 +59,10 @@ public class CirSim extends JFrame implements ComponentListener,
 	Label titleLabel;
 	Button resetButton;
 	Button dumpMatrixButton;
-	MenuItem exportItem, exportLinkItem, importItem, exitItem, undoItem,
+	MenuItem exportItem, exportLinkItem, importItem, exitItem, undoItem, 
 			redoItem, cutItem, copyItem, pasteItem, selectAllItem, optionsItem;
 	Menu optionsMenu;
+	MenuItem helpItem;
 	public Checkbox stoppedCheck;
 	public CheckboxMenuItem dotsCheckItem;
 	public CheckboxMenuItem voltsCheckItem;
@@ -260,9 +269,8 @@ public class CirSim extends JFrame implements ComponentListener,
 		dumpTypes[(int) '?'] = Scope.class;
 		dumpTypes[(int) 'B'] = Scope.class;
 
-		StatusBar statusBar = new StatusBar();
-
 		main.setLayout(new CircuitLayout());
+		
 		cv = new CircuitCanvas(this);
 		cv.addComponentListener(this);
 		cv.addMouseMotionListener(this);
@@ -345,111 +353,111 @@ public class CirSim extends JFrame implements ComponentListener,
 		else
 			mainMenu.add(circuitsMenu);
 
-		mainMenu.add(getClassCheckItem("Add Wire", "de.mobillinux.jcircsim.WireElm"));
-		mainMenu.add(getClassCheckItem("Add Resistor", "de.mobillinux.jcircsim.ResistorElm"));
+		mainMenu.add(getClassCheckItem("Add Wire", "de.mobillinux.jcircsim.elements.WireElm"));
+		mainMenu.add(getClassCheckItem("Add Resistor", "de.mobillinux.jcircsim.elements.ResistorElm"));
 
 		Menu passMenu = new Menu("Passive Components");
 		mainMenu.add(passMenu);
-		passMenu.add(getClassCheckItem("Add Capacitor", "de.mobillinux.jcircsim.CapacitorElm"));
-		passMenu.add(getClassCheckItem("Add Inductor", "de.mobillinux.jcircsim.InductorElm"));
-		passMenu.add(getClassCheckItem("Add Switch", "de.mobillinux.jcircsim.SwitchElm"));
-		passMenu.add(getClassCheckItem("Add Push Switch", "de.mobillinux.jcircsim.PushSwitchElm"));
-		passMenu.add(getClassCheckItem("Add SPDT Switch", "de.mobillinux.jcircsim.Switch2Elm"));
-		passMenu.add(getClassCheckItem("Add Potentiometer", "de.mobillinux.jcircsim.PotElm"));
-		passMenu.add(getClassCheckItem("Add Transformer", "de.mobillinux.jcircsim.TransformerElm"));
+		passMenu.add(getClassCheckItem("Add Capacitor", "de.mobillinux.jcircsim.elements.CapacitorElm"));
+		passMenu.add(getClassCheckItem("Add Inductor", "de.mobillinux.jcircsim.elements.InductorElm"));
+		passMenu.add(getClassCheckItem("Add Switch", "de.mobillinux.jcircsim.elements.SwitchElm"));
+		passMenu.add(getClassCheckItem("Add Push Switch", "de.mobillinux.jcircsim.elements.PushSwitchElm"));
+		passMenu.add(getClassCheckItem("Add SPDT Switch", "de.mobillinux.jcircsim.elements.Switch2Elm"));
+		passMenu.add(getClassCheckItem("Add Potentiometer", "de.mobillinux.jcircsim.elements.PotElm"));
+		passMenu.add(getClassCheckItem("Add Transformer", "de.mobillinux.jcircsim.elements.TransformerElm"));
 		passMenu.add(getClassCheckItem("Add Tapped Transformer",
-				"de.mobillinux.jcircsim.TappedTransformerElm"));
+				"de.mobillinux.jcircsim.elements.TappedTransformerElm"));
 		passMenu
-				.add(getClassCheckItem("Add Transmission Line", "de.mobillinux.jcircsim.TransLineElm"));
-		passMenu.add(getClassCheckItem("Add Relay", "de.mobillinux.jcircsim.RelayElm"));
-		passMenu.add(getClassCheckItem("Add Memristor", "de.mobillinux.jcircsim.MemristorElm"));
-		passMenu.add(getClassCheckItem("Add Spark Gap", "de.mobillinux.jcircsim.SparkGapElm"));
+				.add(getClassCheckItem("Add Transmission Line", "de.mobillinux.jcircsim.elements.TransLineElm"));
+		passMenu.add(getClassCheckItem("Add Relay", "de.mobillinux.jcircsim.elements.RelayElm"));
+		passMenu.add(getClassCheckItem("Add Memristor", "de.mobillinux.jcircsim.elements.MemristorElm"));
+		passMenu.add(getClassCheckItem("Add Spark Gap", "de.mobillinux.jcircsim.elements.SparkGapElm"));
 
 		Menu inputMenu = new Menu("Inputs/Outputs");
 		mainMenu.add(inputMenu);
-		inputMenu.add(getClassCheckItem("Add Ground", "de.mobillinux.jcircsim.GroundElm"));
+		inputMenu.add(getClassCheckItem("Add Ground", "de.mobillinux.jcircsim.elements.GroundElm"));
 		inputMenu.add(getClassCheckItem("Add Voltage Source (2-terminal)",
-				"de.mobillinux.jcircsim.DCVoltageElm"));
+				"de.mobillinux.jcircsim.elements.DCVoltageElm"));
 		inputMenu.add(getClassCheckItem("Add A/C Source (2-terminal)",
-				"de.mobillinux.jcircsim.ACVoltageElm"));
+				"de.mobillinux.jcircsim.elements.ACVoltageElm"));
 		inputMenu.add(getClassCheckItem("Add Voltage Source (1-terminal)",
-				"de.mobillinux.jcircsim.RailElm"));
+				"de.mobillinux.jcircsim.elements.RailElm"));
 		inputMenu.add(getClassCheckItem("Add A/C Source (1-terminal)",
-				"de.mobillinux.jcircsim.ACRailElm"));
+				"de.mobillinux.jcircsim.elements.ACRailElm"));
 		inputMenu.add(getClassCheckItem("Add Square Wave (1-terminal)",
-				"de.mobillinux.jcircsim.SquareRailElm"));
-		inputMenu.add(getClassCheckItem("Add Analog Output", "de.mobillinux.jcircsim.OutputElm"));
-		inputMenu.add(getClassCheckItem("Add Logic Input", "de.mobillinux.jcircsim.LogicInputElm"));
-		inputMenu.add(getClassCheckItem("Add Logic Output", "de.mobillinux.jcircsim.LogicOutputElm"));
-		inputMenu.add(getClassCheckItem("Add Clock", "de.mobillinux.jcircsim.ClockElm"));
-		inputMenu.add(getClassCheckItem("Add A/C Sweep", "de.mobillinux.jcircsim.SweepElm"));
-		inputMenu.add(getClassCheckItem("Add Var. Voltage", "de.mobillinux.jcircsim.VarRailElm"));
-		inputMenu.add(getClassCheckItem("Add Antenna", "de.mobillinux.jcircsim.AntennaElm"));
-		inputMenu.add(getClassCheckItem("Add Current Source", "de.mobillinux.jcircsim.CurrentElm"));
-		inputMenu.add(getClassCheckItem("Add LED", "de.mobillinux.jcircsim.LEDElm"));
-		inputMenu.add(getClassCheckItem("Add Lamp (beta)", "de.mobillinux.jcircsim.LampElm"));
+				"de.mobillinux.jcircsim.elements.SquareRailElm"));
+		inputMenu.add(getClassCheckItem("Add Analog Output", "de.mobillinux.jcircsim.elements.OutputElm"));
+		inputMenu.add(getClassCheckItem("Add Logic Input", "de.mobillinux.jcircsim.elements.LogicInputElm"));
+		inputMenu.add(getClassCheckItem("Add Logic Output", "de.mobillinux.jcircsim.elements.LogicOutputElm"));
+		inputMenu.add(getClassCheckItem("Add Clock", "de.mobillinux.jcircsim.elements.ClockElm"));
+		inputMenu.add(getClassCheckItem("Add A/C Sweep", "de.mobillinux.jcircsim.elements.SweepElm"));
+		inputMenu.add(getClassCheckItem("Add Var. Voltage", "de.mobillinux.jcircsim.elements.VarRailElm"));
+		inputMenu.add(getClassCheckItem("Add Antenna", "de.mobillinux.jcircsim.elements.AntennaElm"));
+		inputMenu.add(getClassCheckItem("Add Current Source", "de.mobillinux.jcircsim.elements.CurrentElm"));
+		inputMenu.add(getClassCheckItem("Add LED", "de.mobillinux.jcircsim.elements.LEDElm"));
+		inputMenu.add(getClassCheckItem("Add Lamp (beta)", "de.mobillinux.jcircsim.elements.LampElm"));
 
 		Menu activeMenu = new Menu("Active Components");
 		mainMenu.add(activeMenu);
-		activeMenu.add(getClassCheckItem("Add Diode", "de.mobillinux.jcircsim.DiodeElm"));
-		activeMenu.add(getClassCheckItem("Add Zener Diode", "de.mobillinux.jcircsim.ZenerElm"));
+		activeMenu.add(getClassCheckItem("Add Diode", "de.mobillinux.jcircsim.elements.DiodeElm"));
+		activeMenu.add(getClassCheckItem("Add Zener Diode", "de.mobillinux.jcircsim.elements.ZenerElm"));
 		activeMenu.add(getClassCheckItem("Add Transistor (bipolar, NPN)",
-				"de.mobillinux.jcircsim.NTransistorElm"));
+				"de.mobillinux.jcircsim.elements.NTransistorElm"));
 		activeMenu.add(getClassCheckItem("Add Transistor (bipolar, PNP)",
-				"de.mobillinux.jcircsim.PTransistorElm"));
-		activeMenu.add(getClassCheckItem("Add Op Amp (- on top)", "de.mobillinux.jcircsim.OpAmpElm"));
+				"de.mobillinux.jcircsim.elements.PTransistorElm"));
+		activeMenu.add(getClassCheckItem("Add Op Amp (- on top)", "de.mobillinux.jcircsim.elements.OpAmpElm"));
 		activeMenu.add(getClassCheckItem("Add Op Amp (+ on top)",
-				"de.mobillinux.jcircsim.OpAmpSwapElm"));
+				"de.mobillinux.jcircsim.elements.OpAmpSwapElm"));
 		activeMenu
-				.add(getClassCheckItem("Add MOSFET (n-channel)", "de.mobillinux.jcircsim.NMosfetElm"));
+				.add(getClassCheckItem("Add MOSFET (n-channel)", "de.mobillinux.jcircsim.elements.NMosfetElm"));
 		activeMenu
-				.add(getClassCheckItem("Add MOSFET (p-channel)", "de.mobillinux.jcircsim.PMosfetElm"));
-		activeMenu.add(getClassCheckItem("Add JFET (n-channel)", "de.mobillinux.jcircsim.NJfetElm"));
-		activeMenu.add(getClassCheckItem("Add JFET (p-channel)", "de.mobillinux.jcircsim.PJfetElm"));
+				.add(getClassCheckItem("Add MOSFET (p-channel)", "de.mobillinux.jcircsim.elements.PMosfetElm"));
+		activeMenu.add(getClassCheckItem("Add JFET (n-channel)", "de.mobillinux.jcircsim.elements.NJfetElm"));
+		activeMenu.add(getClassCheckItem("Add JFET (p-channel)", "de.mobillinux.jcircsim.elements.PJfetElm"));
 		activeMenu.add(getClassCheckItem("Add Analog Switch (SPST)",
-				"de.mobillinux.jcircsim.AnalogSwitchElm"));
+				"de.mobillinux.jcircsim.elements.AnalogSwitchElm"));
 		activeMenu.add(getClassCheckItem("Add Analog Switch (SPDT)",
-				"de.mobillinux.jcircsim.AnalogSwitch2Elm"));
+				"de.mobillinux.jcircsim.elements.AnalogSwitch2Elm"));
 		activeMenu.add(getClassCheckItem("Add SCR", "de.mobillinux.jcircsim.SCRElm"));
 		// activeMenu.add(getClassCheckItem("Add Varactor/Varicap",
 		// "VaractorElm"));
-		activeMenu.add(getClassCheckItem("Add Tunnel Diode", "de.mobillinux.jcircsim.TunnelDiodeElm"));
-		activeMenu.add(getClassCheckItem("Add Triode", "de.mobillinux.jcircsim.TriodeElm"));
+		activeMenu.add(getClassCheckItem("Add Tunnel Diode", "de.mobillinux.jcircsim.elements.TunnelDiodeElm"));
+		activeMenu.add(getClassCheckItem("Add Triode", "de.mobillinux.jcircsim.elements.TriodeElm"));
 		// activeMenu.add(getClassCheckItem("Add Diac", "DiacElm"));
 		// activeMenu.add(getClassCheckItem("Add Triac", "TriacElm"));
 		// activeMenu.add(getClassCheckItem("Add Photoresistor",
 		// "PhotoResistorElm"));
 		// activeMenu.add(getClassCheckItem("Add Thermistor", "ThermistorElm"));
-		activeMenu.add(getClassCheckItem("Add CCII+", "de.mobillinux.jcircsim.CC2Elm"));
-		activeMenu.add(getClassCheckItem("Add CCII-", "de.mobillinux.jcircsim.CC2NegElm"));
+		activeMenu.add(getClassCheckItem("Add CCII+", "de.mobillinux.jcircsim.elements.CC2Elm"));
+		activeMenu.add(getClassCheckItem("Add CCII-", "de.mobillinux.jcircsim.elements.CC2NegElm"));
 
 		Menu gateMenu = new Menu("Logic Gates");
 		mainMenu.add(gateMenu);
-		gateMenu.add(getClassCheckItem("Add Inverter", "de.mobillinux.jcircsim.InverterElm"));
-		gateMenu.add(getClassCheckItem("Add NAND Gate", "de.mobillinux.jcircsim.NandGateElm"));
-		gateMenu.add(getClassCheckItem("Add NOR Gate", "de.mobillinux.jcircsim.NorGateElm"));
-		gateMenu.add(getClassCheckItem("Add AND Gate", "de.mobillinux.jcircsim.AndGateElm"));
-		gateMenu.add(getClassCheckItem("Add OR Gate", "de.mobillinux.jcircsim.OrGateElm"));
-		gateMenu.add(getClassCheckItem("Add XOR Gate", "de.mobillinux.jcircsim.XorGateElm"));
+		gateMenu.add(getClassCheckItem("Add Inverter", "de.mobillinux.jcircsim.elements.InverterElm"));
+		gateMenu.add(getClassCheckItem("Add NAND Gate", "de.mobillinux.jcircsim.elements.NandGateElm"));
+		gateMenu.add(getClassCheckItem("Add NOR Gate", "de.mobillinux.jcircsim.elements.NorGateElm"));
+		gateMenu.add(getClassCheckItem("Add AND Gate", "de.mobillinux.jcircsim.elements.AndGateElm"));
+		gateMenu.add(getClassCheckItem("Add OR Gate", "de.mobillinux.jcircsim.elements.OrGateElm"));
+		gateMenu.add(getClassCheckItem("Add XOR Gate", "de.mobillinux.jcircsim.elements.XorGateElm"));
 
 		Menu chipMenu = new Menu("Chips");
 		mainMenu.add(chipMenu);
-		chipMenu.add(getClassCheckItem("Add D Flip-Flop", "de.mobillinux.jcircsim.DFlipFlopElm"));
-		chipMenu.add(getClassCheckItem("Add JK Flip-Flop", "de.mobillinux.jcircsim.JKFlipFlopElm"));
-		chipMenu.add(getClassCheckItem("Add 7 Segment LED", "de.mobillinux.jcircsim.SevenSegElm"));
-		chipMenu.add(getClassCheckItem("Add VCO", "de.mobillinux.jcircsim.VCOElm"));
-		chipMenu.add(getClassCheckItem("Add Phase Comparator", "de.mobillinux.jcircsim.PhaseCompElm"));
-		chipMenu.add(getClassCheckItem("Add Counter", "de.mobillinux.jcircsim.CounterElm"));
-		chipMenu.add(getClassCheckItem("Add Decade Counter", "de.mobillinux.jcircsim.DecadeElm"));
-		chipMenu.add(getClassCheckItem("Add 555 Timer", "de.mobillinux.jcircsim.TimerElm"));
-		chipMenu.add(getClassCheckItem("Add DAC", "de.mobillinux.jcircsim.DACElm"));
-		chipMenu.add(getClassCheckItem("Add ADC", "de.mobillinux.jcircsim.ADCElm"));
-		chipMenu.add(getClassCheckItem("Add Latch", "de.mobillinux.jcircsim.LatchElm"));
+		chipMenu.add(getClassCheckItem("Add D Flip-Flop", "de.mobillinux.jcircsim.elements.DFlipFlopElm"));
+		chipMenu.add(getClassCheckItem("Add JK Flip-Flop", "de.mobillinux.jcircsim.elements.JKFlipFlopElm"));
+		chipMenu.add(getClassCheckItem("Add 7 Segment LED", "de.mobillinux.jcircsim.elements.SevenSegElm"));
+		chipMenu.add(getClassCheckItem("Add VCO", "de.mobillinux.jcircsim.elements.VCOElm"));
+		chipMenu.add(getClassCheckItem("Add Phase Comparator", "de.mobillinux.jcircsim.elements.PhaseCompElm"));
+		chipMenu.add(getClassCheckItem("Add Counter", "de.mobillinux.jcircsim.elements.CounterElm"));
+		chipMenu.add(getClassCheckItem("Add Decade Counter", "de.mobillinux.jcircsim.elements.DecadeElm"));
+		chipMenu.add(getClassCheckItem("Add 555 Timer", "de.mobillinux.jcircsim.elements.TimerElm"));
+		chipMenu.add(getClassCheckItem("Add DAC", "de.mobillinux.jcircsim.elements.DACElm"));
+		chipMenu.add(getClassCheckItem("Add ADC", "de.mobillinux.jcircsim.elements.ADCElm"));
+		chipMenu.add(getClassCheckItem("Add Latch", "de.mobillinux.jcircsim.elements.LatchElm"));
 
 		Menu otherMenu = new Menu("Other");
 		mainMenu.add(otherMenu);
-		otherMenu.add(getClassCheckItem("Add Text", "de.mobillinux.jcircsim.TextElm"));
-		otherMenu.add(getClassCheckItem("Add Scope Probe", "de.mobillinux.jcircsim.ProbeElm"));
+		otherMenu.add(getClassCheckItem("Add Text", "de.mobillinux.jcircsim.elements.TextElm"));
+		otherMenu.add(getClassCheckItem("Add Scope Probe", "de.mobillinux.jcircsim.elements.ProbeElm"));
 		otherMenu.add(getCheckItem("Drag All (Alt-drag)", "DragAll"));
 		otherMenu.add(getCheckItem(isMac ? "Drag Row (Alt-S-drag, S-right)"
 				: "Drag Row (S-right)", "DragRow"));
@@ -462,6 +470,16 @@ public class CirSim extends JFrame implements ComponentListener,
 
 		mainMenu.add(getCheckItem("Select/Drag Selected (space or Shift-drag)",
 				"Select"));
+		
+		m = new Menu("Help");
+
+		if (useFrame)
+			mb.add(m);
+		else
+			mainMenu.add(m);
+		
+		m.add(helpItem =  getMenuItem("About"));
+		
 		main.add(mainMenu);
 
 		main.add(resetButton = new Button("Reset"));
@@ -489,16 +507,6 @@ public class CirSim extends JFrame implements ComponentListener,
 		powerBar.addAdjustmentListener(this);
 		powerBar.disable();
 		powerLabel.disable();
-
-		main.add(new Label("Heavily based on the Circuit"));
-		main.add(new Label("Simulator by Paul Falstad visit"));
-		main.add(new Label("www.falstad.com"));
-
-		if (useFrame)
-			main.add(new Label(""));
-
-		main.add(new Label(""));
-		main.add(statusBar);
 
 		setGrid();
 		elmList = new Vector();
@@ -1933,6 +1941,15 @@ public class CirSim extends JFrame implements ComponentListener,
 			stoppedCheck.setState(false);
 			cv.repaint();
 		}
+		if (e.getSource() == helpItem)
+		{
+			JOptionPane.showMessageDialog(this,
+				    "Heavily based on the Circuit\n" +
+					"Simulator by Paul Falstad visit\n"+
+					"www.falstad.com");
+
+		}
+		
 		if (e.getSource() == dumpMatrixButton)
 			dumpMatrix = true;
 		if (e.getSource() == exportItem)
