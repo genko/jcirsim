@@ -4,7 +4,7 @@ import java.awt.event.*;
 import java.text.NumberFormat;
 import java.text.DecimalFormat;
 
-class EditDialog extends Dialog implements AdjustmentListener, ActionListener,
+public class EditDialog extends Dialog implements AdjustmentListener, ActionListener,
 		ItemListener {
 	Editable elm;
 	CirSim cframe;
@@ -14,7 +14,7 @@ class EditDialog extends Dialog implements AdjustmentListener, ActionListener,
 	final int barmax = 1000;
 	NumberFormat noCommaFormat;
 
-	EditDialog(Editable ce, CirSim f) {
+	public EditDialog(Editable ce, CirSim f) {
 		super(f, "Edit Component", false);
 		cframe = f;
 		elm = ce;

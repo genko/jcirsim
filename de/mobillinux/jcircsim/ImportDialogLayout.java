@@ -1,7 +1,7 @@
 package de.mobillinux.jcircsim;
 import java.awt.*;
 
-class ImportDialogLayout implements LayoutManager {
+public class ImportDialogLayout implements LayoutManager {
     public ImportDialogLayout() {}
     public void addLayoutComponent(String name, Component c) {}
     public void removeLayoutComponent(Component c) {}

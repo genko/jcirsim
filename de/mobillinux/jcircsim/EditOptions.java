@@ -1,5 +1,8 @@
 package de.mobillinux.jcircsim;
-class EditOptions implements Editable {
+
+import de.mobillinux.jcircsim.elements.CircuitElm;
+
+public class EditOptions implements Editable {
 	CirSim sim;
 
 	public EditOptions(CirSim s) {

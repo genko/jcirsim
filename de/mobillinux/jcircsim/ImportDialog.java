@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 import javax.swing.JFileChooser;
 
-class ImportDialog extends Dialog implements ActionListener {
+public class ImportDialog extends Dialog implements ActionListener {
     CirSim cframe;
     Button importButton, closeButton, exportButton, importFileButton;
     TextArea text;

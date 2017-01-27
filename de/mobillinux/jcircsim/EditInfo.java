@@ -1,8 +1,8 @@
 package de.mobillinux.jcircsim;
 import java.awt.*;
 
-class EditInfo {
-	EditInfo(String n, double val, double mn, double mx) {
+public class EditInfo {
+	public EditInfo(String n, double val, double mn, double mx) {
 		name = n;
 		value = val;
 		if (mn == 0 && mx == 0 && val > 0) {
@@ -18,18 +18,21 @@ class EditInfo {
 		dimensionless = false;
 	}
 
-	EditInfo setDimensionless() {
+	public EditInfo setDimensionless() {
 		dimensionless = true;
 		return this;
 	}
 
-	String name, text;
-	double value, minval, maxval;
-	TextField textf;
+	String name;
+	public String text;
+	public double value;
+	double minval;
+	double maxval;
+	public TextField textf;
 	Scrollbar bar;
-	Choice choice;
-	Checkbox checkbox;
-	boolean newDialog;
+	public Choice choice;
+	public Checkbox checkbox;
+	public boolean newDialog;
 	boolean forceLargeM;
 	boolean dimensionless;
 }

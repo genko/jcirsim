@@ -10,7 +10,7 @@ import javax.swing.Icon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-class StatusBar extends JPanel {
+public class StatusBar extends JPanel {
 
   public StatusBar() {
 	  

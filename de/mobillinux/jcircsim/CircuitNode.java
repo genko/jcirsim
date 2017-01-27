@@ -1,12 +1,12 @@
 package de.mobillinux.jcircsim;
 import java.util.Vector;
 
-class CircuitNode {
+public class CircuitNode {
 	int x, y;
-	Vector links;
+	public Vector links;
 	boolean internal;
 
-	CircuitNode() {
+	public CircuitNode() {
 		links = new Vector();
 	}
 }

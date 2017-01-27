@@ -1,5 +1,8 @@
 package de.mobillinux.jcircsim;
-class CircuitNodeLink {
+
+import de.mobillinux.jcircsim.elements.CircuitElm;
+
+public class CircuitNodeLink {
 	int num;
-	CircuitElm elm;
+	public CircuitElm elm;
 }

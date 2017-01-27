@@ -1,7 +1,7 @@
 package de.mobillinux.jcircsim;
 import java.awt.*;
 
-class CircuitLayout implements LayoutManager {
+public class CircuitLayout implements LayoutManager {
 	public CircuitLayout() {
 	}
 
