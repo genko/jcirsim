@@ -12,7 +12,12 @@ import javax.swing.JPanel;
 
 public class StatusBar extends JPanel {
 
-  public StatusBar() {
+  /**
+	 * 
+	 */
+	private static final long serialVersionUID = -7149975336362384907L;
+
+public StatusBar() {
 	  
 	  class AngledLinesWindowsCornerIcon implements Icon {
 		  private static final int WIDTH = 13;

@@ -415,7 +415,7 @@ public class CirSim extends JFrame implements ComponentListener,
 				"de.mobillinux.jcircsim.elements.AnalogSwitchElm"));
 		activeMenu.add(getClassCheckItem("Add Analog Switch (SPDT)",
 				"de.mobillinux.jcircsim.elements.AnalogSwitch2Elm"));
-		activeMenu.add(getClassCheckItem("Add SCR", "de.mobillinux.jcircsim.SCRElm"));
+		activeMenu.add(getClassCheckItem("Add SCR", "de.mobillinux.jcircsim.elements.SCRElm"));
 		// activeMenu.add(getClassCheckItem("Add Varactor/Varicap",
 		// "VaractorElm"));
 		activeMenu.add(getClassCheckItem("Add Tunnel Diode", "de.mobillinux.jcircsim.elements.TunnelDiodeElm"));

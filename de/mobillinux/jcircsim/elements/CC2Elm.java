@@ -1,4 +1,5 @@
 package de.mobillinux.jcircsim.elements;
+
 import java.awt.*;
 import java.util.StringTokenizer;
 
@@ -69,15 +70,5 @@ public class CC2Elm extends ChipElm {
 
 	public int getDumpType() {
 		return 179;
-	}
-}
-
-class CC2NegElm extends CC2Elm {
-	public CC2NegElm(int xx, int yy) {
-		super(xx, yy, -1);
-	}
-
-	public Class<CC2Elm> getDumpClass() {
-		return CC2Elm.class;
 	}
 }

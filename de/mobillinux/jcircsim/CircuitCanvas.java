@@ -2,6 +2,10 @@ package de.mobillinux.jcircsim;
 import java.awt.*;
 
 public class CircuitCanvas extends Canvas {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 516098090418362896L;
 	CirSim pg;
 
 	public CircuitCanvas(CirSim p) {

@@ -6,6 +6,10 @@ import java.text.DecimalFormat;
 
 public class EditDialog extends Dialog implements AdjustmentListener, ActionListener,
 		ItemListener {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7211852311476984352L;
 	Editable elm;
 	CirSim cframe;
 	Button applyButton, okButton;
